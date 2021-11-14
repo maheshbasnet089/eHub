@@ -1,4 +1,5 @@
 const OtpService = require("../services/otp-services");
+const HashServices = require("../services/hash-services");
 
 class OtpController {
   async sendOtp(req, res) {
@@ -8,7 +9,9 @@ class OtpController {
     }
     const otp = await OtpService.generateOtp();
     const expiresIn = Date.now() + 1000 * 60 * 2;
-    res.json({ otp });
+    const data = `${phone}.${otp}.${expiresIn}`;
+    const hash = HashServices.hashOtp(data);
+    res.json({ hash });
   }
 }
 
