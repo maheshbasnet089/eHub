@@ -12,6 +12,7 @@ class OtpController {
     const data = `${phone}.${otp}.${expiresIn}`;
     const hash = HashServices.hashOtp(data);
     try {
+      await OtpService.sendBySms(phone, otp);
       res.json({
         hash: `${hash}.${expiresIn}`,
         phone,
