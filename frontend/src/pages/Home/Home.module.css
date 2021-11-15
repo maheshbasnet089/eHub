@@ -3,6 +3,9 @@
   line-height: 1.6;
   color: #c4c5c5;
   margin-bottom: 30px;
+  text-align: center;
+  /* margin-top: 10px;
+  margin-right: 2px; */
 }
 
 .cardWrapper {
