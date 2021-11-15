@@ -4,6 +4,7 @@ const app = express();
 const router = require("./routes/otp-routes");
 const PORT = process.env.PORT || 3000;
 
+require("./database.js")(process.env.MONGO_CONNECTION_URL);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //Routes

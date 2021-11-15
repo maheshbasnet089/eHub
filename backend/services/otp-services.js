@@ -17,13 +17,11 @@ class OtpService {
     }
   }
   async sendBySms(phone, otp) {
-    return await twilio.messages
-      .create({
-        body: `Your Verification Code of eHub is ${otp}: `,
-        from: process.env.FROM_NUMBER,
-        to: phone,
-      })
-      .then((message) => console.log("Message sid : ", message.sid));
+    return await twilio.messages.create({
+      body: `Your Verification Code of eHub is ${otp}: `,
+      from: process.env.FROM_NUMBER,
+      to: phone,
+    });
   }
   verifyOtp(hashedOtp, data) {
     let hashedData = HashServices.hashOtp(data);
