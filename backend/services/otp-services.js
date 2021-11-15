@@ -5,6 +5,8 @@ const twilio = require("twilio")(accountSid, authToken, {
   lazyLoading: true,
 });
 
+const HashServices = require("./hash-services");
+
 class OtpService {
   async generateOtp() {
     try {
@@ -22,6 +24,10 @@ class OtpService {
         to: phone,
       })
       .then((message) => console.log("Message sid : ", message.sid));
+  }
+  verifyOtp(hashedOtp, data) {
+    let hashedData = HashServices.hashOtp(data);
+    return hashedOtp === hashedData;
   }
 }
 

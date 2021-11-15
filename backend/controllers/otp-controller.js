@@ -25,6 +25,19 @@ class OtpController {
       });
     }
   }
+  verifyOtp(req, res) {
+    const { phone, otp, hash } = req.body;
+    if (!phone || !otp || !hash) {
+      res.status(400).json({ message: "All fields are required" });
+    }
+    const [hashedOtp, expiresIn] = hash.split(".");
+    const data = `${phone}.${otp}.${expiresIn}`;
+    const isValid = OtpService.verifyOtp(hashedOtp, data);
+    if (!isValid) {
+      return res.status(400).json({ message: "Invalid Token" });
+    }
+    res.json({ message: "Valid Token" });
+  }
 }
 
 module.exports = new OtpController();
