@@ -4,11 +4,12 @@ import Button from '../../../components/shared/Button/Button';
 import styles from './StepAvatar.module.css'
 import { useSelector,useDispatch } from 'react-redux';
 import { setAvatar } from '../../../store/activateSlice';
+import { activate } from '../../../http/index';
 
 const StepAvatar = ({ onNext }) => {
     const dispatch  = useDispatch()
     const [image,setImage] = useState('images/monkey-avatar.png')
-    const {name} = useSelector(state => state.activateSlice)
+    const {name,avatar} = useSelector(state => state.activateSlice)
     function captureImage(e) {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -19,7 +20,13 @@ const StepAvatar = ({ onNext }) => {
         };
     }
 
-    function submit(){
+    async function submit(){
+        try{
+           return   await activate({name,avatar})
+
+        }catch(err){
+            console.log(err)
+        }
  
     }
     return (

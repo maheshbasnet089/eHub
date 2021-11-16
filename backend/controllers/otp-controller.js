@@ -69,6 +69,9 @@ class OtpController {
     const userDto = new UserDto(user);
     res.json({ auth: true, user: userDto });
   }
+  activate(req, res) {
+    res.json({ message: "Ok activate" });
+  }
 }
 
 module.exports = new OtpController();

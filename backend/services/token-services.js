@@ -17,5 +17,8 @@ class TokenServices {
   async storeToken(token, userId) {
     await Token.create({ token, user: userId });
   }
+  async verifyToken(accessToken) {
+    return jwt.verify(accessToken, accessTokenSecret);
+  }
 }
 module.exports = new TokenServices();
