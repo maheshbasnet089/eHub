@@ -2,7 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const router = require("./routes/otp-routes");
-const PORT = process.env.PORT || 3000;
+const cors = require("cors");
+
+const corsOption = {
+  origin: ["http://localhost:3000"],
+};
+app.use(cors(corsOption));
+const PORT = process.env.PORT || 5500;
 
 require("./database.js")(process.env.MONGO_CONNECTION_URL);
 app.use(express.urlencoded({ extended: false }));
