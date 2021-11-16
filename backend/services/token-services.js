@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Token = require("../models/TokenModel");
 const accessTokenSecret = process.env.JWT_ACCESS_TOKEN;
 const refreshTokenSecret = process.env.JWT_REFRESH_TOKEN;
 
@@ -12,6 +13,9 @@ class TokenServices {
       expiresIn: "1y",
     });
     return { accessToken, refreshToken };
+  }
+  async storeToken(token, userId) {
+    await Token.create({ token, user: userId });
   }
 }
 module.exports = new TokenServices();
