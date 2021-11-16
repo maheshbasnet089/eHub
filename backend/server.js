@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 5500;
 
 require("./database.js")(process.env.MONGO_CONNECTION_URL);
 app.use(express.urlencoded({ extended: false }));
+app.use("/storage", express.static("storage"));
 app.use(express.json({ limit: "8mb" }));
 //Routes
 app.use(router);
