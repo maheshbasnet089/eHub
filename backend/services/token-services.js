@@ -32,5 +32,8 @@ class TokenServices {
   async updateRefreshToken(userId, refreshToken) {
     return await Token.updateOne({ userId: userId }, { token: refreshToken });
   }
+  async logOutUser(refreshToken) {
+    return await Token.deleteOne({ token: refreshToken });
+  }
 }
 module.exports = new TokenServices();

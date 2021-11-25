@@ -115,6 +115,13 @@ class OtpController {
     const userDto = new UserDto(user);
     res.json({ auth: true, user: userDto });
   }
+  async logOut(req, res) {
+    const { refreshToken } = req.cookies;
+    await TokenServices.logOutUser(refreshToken);
+    res.clearCookie("refreshToken");
+    res.clearCookie("accessToken");
+    return res.json({ user: null, isAuth: false });
+  }
 }
 
 module.exports = new OtpController();
