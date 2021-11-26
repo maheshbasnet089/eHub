@@ -47,3 +47,10 @@ body {
   justify-content: center;
   min-height: calc(100vh - 140px);
 }
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+}

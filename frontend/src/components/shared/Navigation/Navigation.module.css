@@ -4,3 +4,29 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.navRight {
+  display: flex;
+  align-items: center;
+}
+
+.navName {
+  font-weight: bold;
+  font-size: 20px;
+  /* margin: 0 5px; */
+}
+
+.navlogout {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.navAvatar {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0077ff;
+  margin: 0 20px;
+  margin-right: 10px;
+}
